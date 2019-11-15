@@ -9,14 +9,35 @@ class RadioApp extends StatefulWidget {
 }
 
 class RadioAppState extends State {
+  String value = '';
+
+  _onChange(value) {
+    setState(() {
+      this.value = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: new Text("Radio"),
       ),
-      body: new Container(
-        color: Colors.green,
+      body: new Column(
+        children: <Widget>[
+          RadioListTile(
+            title: Text("A"),
+            value: "A",
+            groupValue: this.value,
+            onChanged: _onChange,
+          ),
+          RadioListTile(
+            title: Text("B"),
+            value: "B",
+            groupValue: this.value,
+            onChanged: _onChange,
+          ),
+        ],
       ),
     );
   }
